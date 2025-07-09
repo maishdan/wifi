@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daniwest - Premium WiFi Access</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-white min-h-screen flex flex-col font-sans bg-gray-900">
+
+  <!-- Background Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Admin Toggle Button -->
+  <button id="adminToggle" class="admin-toggle glass-card p-2 rounded-full hidden" title="Admin Panel">
+    <i class="fas fa-cog text-blue-400"></i>
+  </button>
+
+  <!-- Support WhatsApp -->
+  <a href="https://wa.me/254790293895" class="support-btn" target="_blank" title="Contact Support">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Notification -->
+  <div id="notification" class="fixed top-4 right-4 z-50 hidden"></div>
+
+  <!-- Header -->
+  <header class="p-6 text-center select-none">
+    <div class="floating inline-block">
+      <div class="flex items-center justify-center space-x-3">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 flex items-center justify-center text-2xl shadow-lg">
+          <i class="fas fa-wifi animate-pulse"></i>
+        </div>
+        <h1 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-blue-400 to-purple-400">
+          Daniwest
+        </h1>
+      </div>
+    </div>
+    <p class="mt-2 text-blue-300 font-medium">Premium High-Speed WiFi Access</p>
+
+    <!-- Speed Indicator -->
+    <div class="mt-4 max-w-md mx-auto glass-card p-3 rounded-lg">
+      <div class="flex justify-between items-center mb-1">
+        <span class="text-sm font-medium">Connection Speed</span>
+        <span class="text-green-400 font-bold">65 Mbps</span>
+      </div>
+      <div class="w-full bg-gray-800 h-2 rounded overflow-hidden">
+        <div class="bg-green-400 h-full" style="width: 65%"></div>
+      </div>
+      <div class="flex justify-between text-xs text-gray-400 mt-1">
+        <span>0</span>
+        <span>25</span>
+        <span>50</span>
+        <span>75</span>
+        <span>100+ Mbps</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-6 max-w-2xl mx-auto w-full">
+    <!-- Connection Status -->
+    <div class="glass-card w-full mb-6 p-3 rounded-lg flex items-center justify-between shadow-md">
+      <div class="flex items-center space-x-2">
+        <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+        <span class="font-medium">Connected to Daniwest_5G</span>
+      </div>
+      <div class="text-sm text-blue-300">
+        <i class="far fa-clock mr-1"></i>
+        <span id="connectionTimer">00:00:00</span>
+      </div>
+    </div>
+
+    <!-- Voucher Input -->
+    <div class="glass-card w-full p-4 rounded-lg mb-6">
+      <label for="voucherCode" class="block text-purple-400 font-semibold mb-2">
+        <i class="fas fa-ticket-alt mr-2"></i>Have a voucher code?
+      </label>
+      <div class="voucher-input relative">
+        <input type="text" id="voucherCode" placeholder="Enter voucher code"
+          class="w-full rounded-lg px-4 py-3 bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+        <button id="applyVoucher" class="voucher-btn btn-gradient font-medium">Apply</button>
+      </div>
+    </div>
+
+    <!-- Tabs for Plans -->
+    <div class="glass-card w-full p-6 rounded-xl space-y-6">
+      <h2 class="text-2xl font-bold text-center text-green-400">
+        <i class="fas fa-bolt mr-2"></i>Select Your WiFi Plan
+      </h2>
+
+      <!-- Tabs -->
+      <div class="flex border-b border-gray-700 mb-4">
+        <button class="tab-btn active px-4 py-2 font-medium text-green-400 border-b-2 border-green-400" data-tab="standard">Standard</button>
+        <button class="tab-btn px-4 py-2 font-medium text-blue-400" data-tab="premium">Premium</button>
+        <button class="tab-btn px-4 py-2 font-medium text-purple-400" data-tab="business">Business</button>
+      </div>
+
+      <!-- Standard Plans -->
+      <div id="standard-tab" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="plan-card glass-card rounded-lg p-4 flex flex-col border border-gray-700">
+          <input type="radio" name="plan" value="10" class="hidden" />
+          <h3 class="font-bold text-lg">1 Hour – Ksh 10</h3>
+          <p class="text-gray-300 text-sm">Unlimited data • 1 Device • 1Mbps Speed</p>
+        </label>
+        <label class="plan-card glass-card rounded-lg p-4 flex flex-col border border-gray-700">
+          <input type="radio" name="plan" value="15" class="hidden" />
+          <h3 class="font-bold text-lg">2 Hours – Ksh 15</h3>
+          <p class="text-gray-300 text-sm">Unlimited data • 1 Device • 3Mbps Speed</p>
+        </label>
+        <label class="plan-card glass-card rounded-lg p-4 flex flex-col border border-gray-700">
+          <input type="radio" name="plan" value="20" class="hidden" />
+          <h3 class="font-bold text-lg">4 Hours – Ksh 20</h3>
+          <p class="text-gray-300 text-sm">Unlimited data • 1 Device • 3Mbps Speed</p>
+        </label>
+        <label class="plan-card glass-card rounded-lg p-4 flex flex-col border border-gray-700">
+          <input type="radio" name="plan" value="30" class="hidden" />
+          <h3 class="font-bold text-lg">6 Hours – Ksh 30</h3>
+          <p class="text-gray-300 text-sm">Unlimited data • 1 Device • 3Mbps Speed</p>
+        </label>
+        <label class="plan-card glass-card rounded-lg p-4 flex flex-col border border-gray-700">
+          <input type="radio" name="plan" value="40" class="hidden" />
+          <h3 class="font-bold text-lg">8 Hours – Ksh 40</h3>
+          <p class="text-gray-300 text-sm">Unlimited data • 1 Device • 3Mbps Speed</p>
+        </label>
+        <label class="plan-card glass-card rounded-lg p-4 flex flex-col border border-gray-700">
+          <input type="radio" name="plan" value="55" class="hidden" />
+          <h3 class="font-bold text-lg">24 Hours – Ksh 55</h3>
+          <p class="text-gray-300 text-sm">Unlimited data • 1 Device • 3Mbps Speed</p>
+        </label>
+        <label class="plan-card glass-card rounded-lg p-4 flex flex-col border border-gray-700">
+          <input type="radio" name="plan" value="180" class="hidden" />
+          <h3 class="font-bold text-lg">Weekly – Ksh 180</h3>
+          <p class="text-gray-300 text-sm">Unlimited data • 1 Device • 3Mbps Speed</p>
+        </label>
+        <label class="plan-card glass-card rounded-lg p-4 flex flex-col border border-gray-700">
+          <input type="radio" name="plan" value="750" class="hidden" />
+          <h3 class="font-bold text-lg">Monthly – Ksh 750</h3>
+          <p class="text-gray-300 text-sm">Unlimited data • 1 Device • 3Mbps Speed</p>
+        </label>
+      </div>
+
+      <!-- Payment Options -->
+      <div class="mt-6">
+        <h3 class="text-lg font-semibold text-center text-blue-300 mb-3">Choose Payment Method</h3>
+        <div class="payment-options flex justify-center space-x-4 mb-4">
+          <button class="payment-btn active" data-method="mpesa">M-Pesa</button>
+          <button class="payment-btn" data-method="card">Card</button>
+          <button class="payment-btn" data-method="airtime">Airtime</button>
+        </div>
+
+        <div id="mpesa-form" class="payment-form">
+          <label for="phoneNumber" class="block text-sm mb-2 text-green-400">M-Pesa Number</label>
+          <input type="text" id="phoneNumber" placeholder="+2547XXXXXXXX"
+            class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 mb-3" />
+          <button class="w-full btn-gradient py-3 rounded-lg text-center">Pay with M-Pesa</button>
+          <p class="text-center mt-4 text-sm text-gray-400">Or pay with M-Pesa QR code</p>
+          <img src="qrcode.png" alt="M-Pesa QR Code" class="qr-code mx-auto mt-2 w-32 h-32">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-500 text-sm py-6">
+    <p>&copy; 2025 Daniwest. All rights reserved.<br>Powered by Nexus Technologies</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
